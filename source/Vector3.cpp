@@ -1,10 +1,10 @@
-#include "pch.h"
-
 #include "Vector3.h"
-
+#include "pch.h"
 #include <cassert>
 
 #include "Vector4.h"
+#include <cmath>
+
 #include "Vector2.h"
 
 namespace dae {
@@ -121,6 +121,11 @@ namespace dae {
 		y *= scale;
 		z *= scale;
 		return *this;
+	}
+
+	float Vector3::operator*(const Vector3& v) const
+	{
+		return x * v.x + y * v.y + z * v.z;
 	}
 
 	Vector3& Vector3::operator/=(float scale)

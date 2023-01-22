@@ -6,6 +6,7 @@
 
 #undef main
 #include "Renderer.h"
+#include "main.h"
 
 using namespace dae;
 
@@ -28,7 +29,7 @@ int main(int argc, char* args[])
 	const uint32_t height = 480;
 
 	SDL_Window* pWindow = SDL_CreateWindow(
-		"DirectX - ***Insert Name/Class***",
+		"Dual Rasterizer - Senne Van Rompaey GD08",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		width, height, 0);
@@ -42,6 +43,7 @@ int main(int argc, char* args[])
 
 	//Start loop
 	pTimer->Start();
+	bool shouldPrint = false;
 	float printTimer = 0.f;
 	bool isLooping = true;
 	while (isLooping)
@@ -56,8 +58,36 @@ int main(int argc, char* args[])
 				isLooping = false;
 				break;
 			case SDL_KEYUP:
-				//Test for a key
-				//if (e.key.keysym.scancode == SDL_SCANCODE_X)
+				if (e.key.keysym.scancode == SDL_SCANCODE_F1)
+					pRenderer->ToggleRasterizerMode();
+				else if (e.key.keysym.scancode == SDL_SCANCODE_F2)
+					pRenderer->ToggleMeshRotation();
+				else if (e.key.keysym.scancode == SDL_SCANCODE_F9)
+					pRenderer->CycleCullingMode();
+				else if (e.key.keysym.scancode == SDL_SCANCODE_F10)
+					pRenderer->ToggleUniformColor();
+				else if (e.key.keysym.scancode == SDL_SCANCODE_F11)
+					shouldPrint = !shouldPrint;
+
+				// only allow specific shortcuts if in correct render mode
+				if (pRenderer->GetRenderMode() == Renderer::RenderMode::Hardware)
+				{
+					if (e.key.keysym.scancode == SDL_SCANCODE_F3)
+						pRenderer->GetHardwareRenderer()->ToggleFireFxMesh();
+					else if (e.key.keysym.scancode == SDL_SCANCODE_F4)
+						pRenderer->CycleSampleState();
+				}
+				else if (pRenderer->GetRenderMode() == Renderer::RenderMode::Software)
+				{
+					if (e.key.keysym.scancode == SDL_SCANCODE_F5)
+						pRenderer->GetSoftwareRenderer()->CycleLightingMode();
+					else if (e.key.keysym.scancode == SDL_SCANCODE_F6)
+						pRenderer->GetSoftwareRenderer()->ToggleNormalMap();
+					else if (e.key.keysym.scancode == SDL_SCANCODE_F7)
+						pRenderer->GetSoftwareRenderer()->ToggleDepthBufferVisualization();
+					else if (e.key.keysym.scancode == SDL_SCANCODE_F8)
+						pRenderer->GetSoftwareRenderer()->ToggleBoundingBoxVisualization();
+				}
 				break;
 			default: ;
 			}
@@ -72,7 +102,7 @@ int main(int argc, char* args[])
 		//--------- Timer ---------
 		pTimer->Update();
 		printTimer += pTimer->GetElapsed();
-		if (printTimer >= 1.f)
+		if (printTimer >= 1.f && shouldPrint)
 		{
 			printTimer = 0.f;
 			std::cout << "dFPS: " << pTimer->GetdFPS() << std::endl;
