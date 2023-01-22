@@ -46,7 +46,7 @@ int main(int argc, char* args[])
 	bool shouldPrint = false;
 	float printTimer = 0.f;
 	bool isLooping = true;
-	std::cout << "Started loop\n";
+
 	while (isLooping)
 	{
 		//--------- Get input events ---------
@@ -56,7 +56,6 @@ int main(int argc, char* args[])
 			switch (e.type)
 			{
 			case SDL_QUIT:
-				std::cout << "quit\n";
 				isLooping = false;
 				break;
 			case SDL_KEYUP:
@@ -111,7 +110,6 @@ int main(int argc, char* args[])
 		}
 	}
 	pTimer->Stop();
-	std::cout << "Ended loop\n";
 
 	//Shutdown "framework"
 	delete pRenderer;
