@@ -58,8 +58,8 @@ namespace dae
 
 		ID3D11SamplerState* m_pSamplerState;
 		bool m_RenderFireMesh = true;
-		bool m_UseUniformColor;
-		Mesh::CullMode m_CullMode;
+		bool m_UseUniformColor = false;
+		Mesh::CullMode m_CullMode = Mesh::CullMode::Back;
 		ID3D11RasterizerState* m_pRasterizer;
 
 		HRESULT InitializeDirectX();

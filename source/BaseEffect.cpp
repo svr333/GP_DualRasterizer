@@ -49,7 +49,7 @@ BaseEffect::BaseEffect(ID3D11Device* pDevice, const std::wstring& assetFile)
 		}
 	}
 
-	if (pErrorBlob)
+	if (false)
 	{
 		std::cout << "Error occured in Effect.cpp.\n";
 

@@ -57,8 +57,8 @@ namespace dae
 		bool m_RotateMesh = false;
 		float m_MeshRotation = 0.0f;
 		bool m_UseNormalMap = true;
-		bool m_UseUniformColor;
-		Mesh::CullMode m_CullMode;
+		bool m_UseUniformColor = false;
+		Mesh::CullMode m_CullMode = Mesh::CullMode::Back;
 
 		Texture* m_pTexture = nullptr;
 		Texture* m_pNormal = nullptr;
