@@ -38,7 +38,7 @@ namespace dae
 		Matrix projectionMatrix{};
 
 		const float camVelocity = 15.0f;
-		const float angleVelocity = 0.50f;
+		float angleVelocity = 3.5f;
 
 		void Initialize(float _aspectRatio = 1.0f, float _fovAngle = 90.f, Vector3 _origin = {0.f,0.f,0.f})
 		{

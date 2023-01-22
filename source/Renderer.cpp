@@ -93,6 +93,8 @@ namespace dae {
 	void Renderer::ToggleRasterizerMode()
 	{
 		m_RenderMode = (RenderMode)(((int)m_RenderMode + 1) % (int)RenderMode::END);
+
+		m_pCamera->angleVelocity = (int)m_RenderMode ? 3.5f : 0.25f;
 		auto text = (int)m_RenderMode ? "DirectX" : "Software";
 		std::cout << "Toggled Rasterization Mode: " << text << "\n";
 	}
