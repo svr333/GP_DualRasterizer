@@ -26,6 +26,31 @@ namespace dae {
 		auto transEffect = new TransparentEffect(m_pHardware->GetDevice());
 		auto fireMesh = new Mesh(m_pHardware->GetDevice(), transEffect, "Resources/fireFX.obj");
 		m_pMeshes.push_back(fireMesh);
+
+		// print keybinds (coloring was weird but eh)
+		// https://stackoverflow.com/questions/4053837/colorizing-text-in-the-console-with-c
+		std::cout << "\x1B[33m";
+		std::cout << "SHARED KEY BINDINGS\n";
+		std::cout << "  [F1]  Toggle Rasterizer Mode\n";
+		std::cout << "  [F2]  Toggle Vehicle Rotation\n";
+		std::cout << "  [F9]  Cycle CullMode\n";
+		std::cout << "  [F10] Toggle Uniform ClearColor\n";
+		std::cout << "  [F11] Toggle Print FPS (ON / OFF)\n\n";
+
+		std::cout << "\x1B[32m";
+		std::cout << "HARDWARE KEY BINDINGS\n";
+		std::cout << "  [F3] Toggle FireFX\n";
+		std::cout << "  [F4] Cycle Sampler State\n\n";
+
+		std::cout << "\x1B[35m";
+		std::cout << "SOFTWARE KEY BINDINGS\n";
+		std::cout << "  [F5] Cycle Shading Mode\n";
+		std::cout << "  [F6] Toggle NormalMap\n";
+		std::cout << "  [F7] Toggle DepthBuffer Visualization\n";
+		std::cout << "  [F8] Toggle BoundingBox Visualization\n";
+		std::cout << "\n\n";
+
+		std::cout << "\x1B[37m";
 	}
 
 	Renderer::~Renderer()
